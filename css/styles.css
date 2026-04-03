@@ -795,6 +795,13 @@ body.nav-open .nav-backdrop {
   color: var(--brand-blue);
 }
 
+.feature-price-unit {
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
 .feature-title {
   margin: 0 0 0.5rem;
   font-size: 1.0625rem;

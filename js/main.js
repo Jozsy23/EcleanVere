@@ -75,9 +75,9 @@
       var email = String(fd.get("email") || "").trim();
       var message = String(fd.get("message") || "").trim();
       var to = "hello@example.com";
-      var subject = encodeURIComponent("Contact from " + (name || "landing"));
+      var subject = encodeURIComponent("Contact de la " + (name || "site"));
       var body = encodeURIComponent(
-        [message, "", "—", "Name: " + name, "Email: " + email].join("\n")
+        [message, "", "—", "Nume: " + name, "E-mail: " + email].join("\n")
       );
       window.location.href = "mailto:" + to + "?subject=" + subject + "&body=" + body;
     });
