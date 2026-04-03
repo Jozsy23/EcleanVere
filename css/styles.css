@@ -74,6 +74,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@media (max-width: 767px) {
+  body.nav-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 3px;
@@ -101,11 +108,45 @@ body {
   margin-inline: auto;
 }
 
+/* Mobile menu — dim layer under overlay (tap to close) */
+.nav-backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: rgba(0, 26, 51, 0.45);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.28s ease,
+    visibility 0s linear 0.28s;
+}
+
+body.nav-open .nav-backdrop {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.28s ease,
+    visibility 0s;
+}
+
+@media (min-width: 768px) {
+  .nav-backdrop {
+    display: none !important;
+  }
+}
+
 /* Header — brand blue bar */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
   background: var(--brand-blue);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
@@ -238,6 +279,71 @@ body {
   display: flex;
 }
 
+@media (max-width: 767px) {
+  .nav-list {
+    display: flex;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    z-index: 101;
+    width: 100%;
+    height: auto;
+    max-height: min(85vh, calc(100dvh - var(--header-h) - 0.75rem));
+    margin: 0;
+    margin-top: 0;
+    padding: 0.65rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border: none;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.65rem);
+    pointer-events: none;
+    transition:
+      opacity 0.22s ease,
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s linear 0.32s;
+  }
+
+  .site-nav.is-open .nav-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition:
+      opacity 0.22s ease,
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .nav-list,
+  .site-nav.is-open .nav-list {
+    transform: none !important;
+  }
+
+  .nav-list {
+    transition: opacity 0.12s ease, visibility 0s linear 0.12s;
+  }
+
+  .site-nav.is-open .nav-list {
+    transition: opacity 0.12s ease, visibility 0s;
+  }
+
+  .nav-backdrop {
+    transition: opacity 0.12s ease, visibility 0s linear 0.12s;
+  }
+
+  body.nav-open .nav-backdrop {
+    transition: opacity 0.12s ease, visibility 0s;
+  }
+}
+
 .nav-list a:not(.btn) {
   display: flex;
   align-items: center;
@@ -302,6 +408,14 @@ body {
     border: none;
     box-shadow: none;
     background: transparent;
+    position: static;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    max-height: none;
+    overflow: visible;
+    transition: none !important;
   }
 
   .nav-cta {
@@ -347,6 +461,50 @@ body {
 .btn--primary:hover {
   filter: brightness(1.04);
   box-shadow: 0 4px 16px -2px rgba(255, 215, 0, 0.45), var(--shadow-md);
+}
+
+.btn--whatsapp {
+  gap: 0.45rem;
+  background: #25d366;
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08), var(--shadow-md);
+}
+
+.btn--whatsapp:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 4px 16px -2px rgba(37, 211, 102, 0.45), var(--shadow-md);
+}
+
+.btn--whatsapp.btn--nav-cta {
+  background: #25d366;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+}
+
+.btn--whatsapp.btn--nav-cta:hover {
+  filter: brightness(1.08);
+}
+
+.btn--whatsapp.btn--on-dark {
+  background: #25d366;
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn--whatsapp.btn--on-dark:hover {
+  filter: brightness(1.08);
+}
+
+.btn-whatsapp-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.btn-whatsapp-icon svg {
+  display: block;
 }
 
 .btn--ghost {
