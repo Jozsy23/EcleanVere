@@ -34,6 +34,8 @@
   --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset, 0 12px 40px -8px var(--accent-glow);
   --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --header-h: 4rem;
+  /* Offset for anchor links: sticky header + safe area only */
+  --header-scroll-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   --wrap: min(100% - 1.5rem, 70rem);
 }
 
@@ -45,6 +47,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-scroll-offset);
 }
 
 @media (prefers-reduced-motion: reduce) {
