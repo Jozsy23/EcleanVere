@@ -160,7 +160,7 @@ body.nav-open .nav-backdrop {
   align-items: center;
   gap: 0.75rem;
   min-height: var(--header-h);
-  padding-block: 0.5rem;
+  padding-block: 0.3rem;
 }
 
 .logo {
@@ -181,16 +181,16 @@ body.nav-open .nav-backdrop {
 .logo-img {
   display: block;
   flex-shrink: 0;
-  height: clamp(2.5rem, 8vw, 3rem);
+  height: clamp(3.15rem, 10.5vw, 3.95rem);
   width: auto;
-  max-width: min(12rem, 52vw);
+  max-width: min(16rem, 60vw);
   object-fit: contain;
   object-position: left center;
 }
 
 .logo-text {
   font-weight: 800;
-  font-size: clamp(0.95rem, 3.2vw, 1.2rem);
+  font-size: clamp(1.18rem, 4.2vw, 1.55rem);
   letter-spacing: -0.03em;
   color: #fff;
 }
@@ -544,7 +544,7 @@ body.nav-open .nav-backdrop {
   filter: brightness(1.05);
 }
 
-/* Hero — mesh + grid */
+/* Hero — mesh + grid (no photo) */
 .hero {
   position: relative;
   padding: clamp(3rem, 10vw, 6rem) 0 clamp(4rem, 12vw, 7rem);
@@ -554,6 +554,7 @@ body.nav-open .nav-backdrop {
 .hero-bg {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
     radial-gradient(ellipse 90% 70% at 10% -10%, rgba(0, 89, 179, 0.14) 0%, transparent 50%),
     radial-gradient(ellipse 70% 50% at 95% 15%, rgba(76, 175, 80, 0.12) 0%, transparent 45%),
