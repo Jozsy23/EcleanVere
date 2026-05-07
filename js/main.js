@@ -74,8 +74,8 @@
       var name = String(fd.get("name") || "").trim();
       var email = String(fd.get("email") || "").trim();
       var message = String(fd.get("message") || "").trim();
-      var to = "hello@example.com";
-      var subject = encodeURIComponent("Contact de la " + (name || "site"));
+      var to = "office@eclean.vereshub.com";
+      var subject = encodeURIComponent("Oferta curatenie");
       var body = encodeURIComponent(
         [message, "", "—", "Nume: " + name, "E-mail: " + email].join("\n")
       );
